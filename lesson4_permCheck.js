@@ -13,6 +13,8 @@ function solution(A) {
     return result
 }
 
+//Correctness 100%
+//Performance 100%
 function solution(A) {
     // write your code in JavaScript (Node.js 8.9.4)
     let n = A.length

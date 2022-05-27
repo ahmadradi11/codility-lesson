@@ -7,6 +7,7 @@ function solution(A) {
 
     const getSum = (a, b) => a + b;
     let sumOfA = A.reduce(getSum, 0)
+
     let supposeSum = (n + 1) * 0.5 * (2 + (n + 1) - 1)
     let result = supposeSum - sumOfA
     return result
