@@ -3,7 +3,6 @@
 //time complexity:O(N*M)
 // Analysis summary:The following issues have been detected: timeout errors.
 function solution(S, P, Q) {
-    // write your code in JavaScript (Node.js 8.9.4)
     let n = S.length
     let prefixMin = []
     let pIndex, qIndex, min
@@ -12,7 +11,6 @@ function solution(S, P, Q) {
     for (let i = 0; i < n; i++) {
         prefixMin[i] = minFactor[S.charAt(i)]
     }
-    // console.log(prefixMin)
     for (let j = 0; j < P.length; j++) {
         pIndex = P[j]
         qIndex = Q[j]
@@ -22,9 +20,7 @@ function solution(S, P, Q) {
         }
 
         result[j] = min
-        // console.log(pIndex, qIndex, min)
     }
-    // console.log(result)
     return result
 }
 
@@ -32,7 +28,6 @@ function solution(S, P, Q) {
 //Performance 100%
 //time complexity:O(N + M)
 function solution(S, P, Q) {
-    // write your code in JavaScript (Node.js 8.9.4)
     let pIndex, qIndex, min
     let result = []
     let str
