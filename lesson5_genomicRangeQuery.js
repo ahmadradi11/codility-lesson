@@ -1,12 +1,55 @@
+//Correctness 100%
+//Performance 0%
+//time complexity:O(N*M)
+// Analysis summary:The following issues have been detected: timeout errors.
 function solution(S, P, Q) {
     // write your code in JavaScript (Node.js 8.9.4)
     let n = S.length
     let prefixMin = []
+    let pIndex, qIndex, min
+    let result = []
     let minFactor = { 'A': 1, 'C': 2, 'G': 3, 'T': 4 }
-    prefixMin[0] = minFactor[S.charAt(0)]
-    for (let i = 1; i < n; i++) {
+    for (let i = 0; i < n; i++) {
         prefixMin[i] = minFactor[S.charAt(i)]
-        prefixMin[i] = Math.min(prefixMin[i - 1], prefixMin[i])
     }
-    console.log(prefixMin)
+    // console.log(prefixMin)
+    for (let j = 0; j < P.length; j++) {
+        pIndex = P[j]
+        qIndex = Q[j]
+        min = 5
+        for (let k = pIndex; k <= qIndex; k++) {
+            min = Math.min(prefixMin[k], min)
+        }
+
+        result[j] = min
+        // console.log(pIndex, qIndex, min)
+    }
+    // console.log(result)
+    return result
+}
+
+//Correctness 100%
+//Performance 100%
+//time complexity:O(N + M)
+function solution(S, P, Q) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    let pIndex, qIndex, min
+    let result = []
+    let str
+    let factor = [['A', 1], ['C', 2], ['G', 3], ['T', 4]]
+
+    for (let j = 0; j < P.length; j++) {
+        pIndex = P[j]
+        qIndex = Q[j]
+
+        str = S.substring(pIndex, qIndex + 1)
+        for (const [c, fac] of factor) {
+            if (str.includes(c)) {
+                min = fac
+                break
+            }
+        }
+        result[j] = min
+    }
+    return result
 }
