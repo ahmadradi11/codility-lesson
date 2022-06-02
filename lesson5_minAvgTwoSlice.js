@@ -15,12 +15,39 @@ function solution(A) {
             sum += A[q]
             average = sum / (q - p + 1)
             min = Math.min(average, min)
-            console.log(p, q, average, min)
         }
         minAveAtEachP[p] = min
     }
     let minimalAve = minAveAtEachP.reduce((a, b, id) => Math.min(a, b))
     result = minAveAtEachP.indexOf(minimalAve)
-    console.log(minimalAve, result)
     return result
 }
+
+//Correctness 100%
+//Performance 100%
+//time complexity:O(N) 
+function solution(A) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    let n = A.length
+
+    let minAve = 100000
+    let ave, pos = 0
+
+    for (let i = 0; i <= n - 2; i++) {
+        ave = (A[i] + A[i + 1]) / 2
+        if (ave < minAve) {
+            pos = i
+            minAve = ave
+        }
+
+        if (n - i >= 3) {
+            ave = (A[i] + A[i + 1] + A[i + 2]) / 3
+            if (ave < minAve) {
+                pos = i
+                minAve = ave
+            }
+        }
+    }
+    return pos
+}
+
