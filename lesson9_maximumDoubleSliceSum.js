@@ -6,13 +6,9 @@ function solution(A) {
     const getMaxArr = A => {
         let arr = Array(A.length)
         let localMax = 0
-        let globalMax = A[0]
         for (let i = 0; i < A.length; i++) {
-            if(i===0 && A[i]<0) localMax = A[i]
-            else localMax = Math.max(localMax + A[i], localMax)
-            
-            globalMax = Math.max(globalMax, localMax)
-            arr[i] = globalMax
+            localMax = Math.max(localMax + A[i], 0)         
+            arr[i] = localMax
         }
         return arr
     }
@@ -22,19 +18,15 @@ function solution(A) {
     // console.log(leftSlicedArr, rightSlicedArr)
 
     let leftArr = [0].concat(getMaxArr(leftSlicedArr))
-    let rightArr = getMaxArr(rightSlicedArr.reverse()).reverse().concat([0])
+    let rightArr =[0].concat(getMaxArr(rightSlicedArr.reverse()))
     // console.log(leftArr, rightArr)
 
-    let sum, i = 0, max = 0
-    while (i < leftArr.length) {
-        sum = leftArr[i] + rightArr[i]
+    let sum, i = 0, j=rightArr.length-1, max = 0
+    while (i < leftArr.length && j>=0) {
+        sum = leftArr[i] + rightArr[j]
         max = Math.max(sum, max)
         i++
+        j--
     }
-
-    return max
+  return max
 }
-
-
-// [-2, -3, -4, 1, -5, -6, -7] => 1
- //[6, 1, 5, 6, 4, 2, 9, 4] =>26
